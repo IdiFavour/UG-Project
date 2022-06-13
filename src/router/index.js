@@ -5,16 +5,17 @@ import IndexView from '../views/indexView.vue'
 import ChatView from '../views/ChatView.vue'
 import Login from '../views/Login.vue'
 import Signup from '../views/Signup.vue'
+import Profile from '../views/Profile.vue'
 
 const router = createRouter({
     history: createWebHistory(
         import.meta.env.BASE_URL),
     routes: [{
-            path: '/',
+            path: '/feed',
             name: 'home',
             component: IndexView,
             children: [{
-                    path: '/',
+                    path: '/feed',
                     name: 'home',
                     component: FeedView,
                 },
@@ -22,11 +23,16 @@ const router = createRouter({
                     path: '/chat',
                     name: 'msg',
                     component: ChatView
+                },
+                {
+                    path: '/profile',
+                    name: 'profile',
+                    component: Profile
                 }
             ]
         },
         {
-            path: '/login',
+            path: '/',
             name: 'login',
             component: Login
         },

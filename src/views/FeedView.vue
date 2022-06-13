@@ -1,7 +1,7 @@
 <template>
   <div class="container-field">
     <div class="feed">
-      <div class="row">
+      <div class="row flex-column-reverse flex-lg-row">
         <div class="col-lg-7 my-4">
           <div class="card mb-2">
             <!-- Cover -->
@@ -31,11 +31,13 @@
                     <small class="date-posted">May 2</small>
                   </div>
                 </div>
-                   <div class="col-12 pt-2">
-                      <h5 class="h2 text-black fw-bold">What tools/frameworks do you use for styling you web app?</h5>
-                  </div>
-                  <div class="col-12">
-                    <!-- <div class="card-tag">
+                <div class="col-12 pt-2">
+                  <h5 class="h2 text-black fw-bold">
+                    What tools/frameworks do you use for styling you web app?
+                  </h5>
+                </div>
+                <div class="col-12">
+                  <!-- <div class="card-tag">
                       <p class="btn btn-outline-secondary">Secondary</p>
                       <p class="btn btn-outline-secondary">Secondary</p>
                       <p class="btn btn-outline-secondary">Secondary</p>
@@ -43,16 +45,15 @@
                       <p class="btn btn-outline-secondary">Secondary</p>
                       <p class="btn btn-outline-secondary">Secondary</p>
                     </div> -->
-                    <div class="card-tag">
-                      <p class="btn">#Secondary</p>
-                      <p class="btn">#Secondary</p>
-                      <p class="btn">#Secondary</p>
-                      <p class="btn">#Secondary</p>
-                      <p class="btn">#Secondary</p>
-                      <p class="btn">#Secondary</p>
-                    </div>
+                  <div class="card-tag">
+                    <p class="btn">#Secondary</p>
+                    <p class="btn">#Secondary</p>
+                    <p class="btn">#Secondary</p>
+                    <p class="btn">#Secondary</p>
+                    <p class="btn">#Secondary</p>
+                    <p class="btn">#Secondary</p>
                   </div>
-                
+                </div>
               </div>
             </div>
           </div>
@@ -76,39 +77,122 @@
                     <small class="date-posted">May 2</small>
                   </div>
                 </div>
-                   <div class="col-12 pt-2">
-                      <h5 class="h4 text-black fw-bold">What tools/frameworks do you use for styling you web app?</h5>
+                <div class="col-12 pt-2">
+                  <h5 class="h4 text-black fw-bold">
+                    What tools/frameworks do you use for styling you web app?
+                  </h5>
+                </div>
+                <div class="col-12">
+                  <div class="card-tag">
+                    <p class="btn">#Secondary</p>
+                    <p class="btn">#Secondary</p>
+                    <p class="btn">#Secondary</p>
+                    <p class="btn">#Secondary</p>
+                    <p class="btn">#Secondary</p>
+                    <p class="btn">#Secondary</p>
                   </div>
-                  <div class="col-12">
-                    <div class="card-tag">
-                      <p class="btn">#Secondary</p>
-                      <p class="btn">#Secondary</p>
-                      <p class="btn">#Secondary</p>
-                      <p class="btn">#Secondary</p>
-                      <p class="btn">#Secondary</p>
-                      <p class="btn">#Secondary</p>
-                    </div>
-                  </div>
-                
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <div class="col-lg-5 my-4">
+          <div class="still">
+            <div class="form-group p-3 pt-0">
+                <input type="text" class="form-control p-2 ps-3 rounded-0 shadow-0 form-control-lg form-control-a" placeholder="Search">
+            </div>
+            <div class="card mb-2">
+              <!-- Content -->
+              <div class="card__content p-3 p-lg-4">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="card-tag">
+                      <h4 class="btn">#Secondary</h4>
+                    </div>
+                  </div>
+                  <div class="second d-flex flex-row mt-2">
+                    <div class="image mr-3">
+                      <img
+                        src="https://i.imgur.com/0LKZQYM.jpg"
+                        class="rounded-circle"
+                        width="40"
+                      />
+                    </div>
+
+                    <div class="">
+                      <div class="py-2 ps-2">
+                        <span>@hairtaje</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12 pt-2">
+                    <p class="h5 text-black fw-bold">
+                      What tools/frameworks do you use for styling you web app?
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card mb-2">
+              <!-- Content -->
+              <div class="card__content p-3 p-lg-4">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="card-tag">
+                      <h4 class="btn">#Secondary</h4>
+                    </div>
+                  </div>
+                  <div class="second d-flex flex-row mt-2">
+                    <div class="image mr-3">
+                      <img
+                        src="https://i.imgur.com/0LKZQYM.jpg"
+                        class="rounded-circle"
+                        width="40"
+                      />
+                    </div>
+
+                    <div class="">
+                      <div class="py-2 ps-2">
+                        <span>@hairtaje</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12 pt-2">
+                    <p class="h5 text-black fw-bold">
+                      What tools/frameworks do you use for styling you web app?
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+        </div>
       </div>
     </div>
   </div>
-  
 </template>
 
 <style>
-.card-tag p:hover{
-  background: rgb(232, 236, 243);;
+.still {
+    position: sticky !important;
+    top: 100px !important;
+}
+.card-tag p:hover {
+  background: rgb(232, 236, 243);
   color: black;
 }
-.card-tag p{
+.card-tag p {
   margin: 1px;
   font-size: 0.8rem;
 }
+
+.card-tag h4:hover {
+  background: rgb(232, 236, 243);
+  color: black;
+}
+
 .card {
   display: flex;
   flex-direction: column;
@@ -156,12 +240,11 @@
   top: 50%;
   transform: translate(-50%, -50%);
 }
-.date-posted{
+.date-posted {
   font-size: 0.75rem;
   color: rgb(82, 82, 82);
 }
-.avatar-name{
+.avatar-name {
   font-size: 0.875rem;
 }
-
 </style>

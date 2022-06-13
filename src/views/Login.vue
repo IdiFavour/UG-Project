@@ -34,7 +34,9 @@
                 >Privacy Statement</a
               >.
             </p>
+            <RouterLink to="/feed">
             <button type="submit" class="submit_btn">Sign In</button>
+            </RouterLink>
             <div class="extras">
               <p>Don't have an account?</p>
               &nbsp;

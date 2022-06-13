@@ -48,7 +48,7 @@
             <div class="extras">
               <p>Already have an account?</p>
               &nbsp;
-              <RouterLink to="/login">
+              <RouterLink to="/">
                 <a>Sign In</a>
               </RouterLink>
             </div>

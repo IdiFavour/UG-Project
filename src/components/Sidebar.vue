@@ -41,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 
 <template>
+
   <body id="body-pd">
     <header class="header" id="header">
       <div class="header_toggle">
@@ -48,13 +49,20 @@ document.addEventListener("DOMContentLoaded", function (event) {
       </div>
 
       <div class="gap-2 d-md-flex justify-content-md-end">
-        <RouterLink to="/login">
+        <RouterLink to="/">
           <button class="btn btn-login me-md-2 rounded-5" type="button">Log in</button>
 
         </RouterLink>
         <RouterLink to="/signup">
-        <button type="button" class="btn btn-outline-primary btn-create rounded-5">Create account</button>
+          <button type="button" class="btn btn-outline-primary btn-create rounded-5">Create account</button>
 
+        </RouterLink>
+        <RouterLink to="/profile">
+          <div class="second d-flex flex-row d-none">
+            <div class="image mr-3">
+              <img src="https://i.imgur.com/0LKZQYM.jpg" class="rounded-circle" width="40" />
+            </div>
+          </div>
         </RouterLink>
       </div>
     </header>
@@ -62,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
       <nav class="nav">
         <div>
           <div class="nav_list">
-            <RouterLink to="/">
+            <RouterLink to="/feed">
               <a class="nav_link active">
                 <i class="bx bx-grid-alt nav_icon"></i>
                 <span class="nav_name">Home</span>
@@ -80,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
               <i class="bx bx-bookmark nav_icon"></i>
               <span class="nav_name">Bookmark</span>
             </a>
-            <a href="#" class="nav_link">
+            <a href="/profile" class="nav_link">
               <i class="bx bx-user nav_icon"></i>
               <span class="nav_name">Profile</span>
             </a>
@@ -237,9 +245,11 @@ a {
 .body-pd {
   padding-left: calc(var(--nav-width) + 1rem);
 }
+
 .body-pd .header {
   padding-left: 1.5rem;
 }
+
 .active {
   color: var(--white-color);
 }
@@ -267,9 +277,11 @@ a {
     height: calc(var(--header-height) + 1rem);
     padding: 0 2rem 0 1.5rem;
   }
+
   .body-pd .header {
     padding-left: 1.5rem;
   }
+
   .header_img {
     width: 40px;
     height: 40px;
@@ -292,16 +304,19 @@ a {
     padding-left: calc(var(--nav-width) + 188px);
   }
 }
-.btn-login:hover{
+
+.btn-login:hover {
   text-decoration: underline;
   background-color: var(--first-color-lit);
 }
-.btn-create:hover{
+
+.btn-create:hover {
   text-decoration: underline;
   background-color: var(--first-color);
   border-color: var(--first-color);
 }
-.btn-create{
+
+.btn-create {
   color: var(--first-color);
   border-color: var(--first-color);
 }

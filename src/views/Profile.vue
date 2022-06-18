@@ -23,19 +23,20 @@ import Postcard from "@/components/cards/Postcard.vue";
                             <h6>
                                 Web Developer and Designer
                             </h6>
-                            <p class="proile-rating">RANKINGS : <span>8/10</span></p>
                             
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <div class="button mt-2 d-flex flex-row align-items-center">
-                          <button class="btn btn-sm btn-login w-50 mx-1">
-                            Edit Profile
-                          </button>
-                          <button class="btn btn-sm btn-primary btn-create w-50 ml-2">
+                        
+                          <RouterLink to="/settings">
+                            <button class="btn btn-sm btn-login w-50 mx-1">
+                              Edit Profile
+                            </button>
+                          </RouterLink>
+                          <!-- <button class="btn btn-sm btn-primary btn-create w-50 ml-2">
                                   Follow
-                          </button>
-                        </div>
+                          </button> -->
+                        
                     </div>
                 </div>
                 <div class="row">
@@ -50,6 +51,24 @@ import Postcard from "@/components/cards/Postcard.vue";
                               <div class="col-12 pt-2 listcard">
                                 <p class=" text-black ">
                                   MEVN, MERN, Python
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card my-3">
+                          <!-- Content -->
+                          <div class="card__content p-3 py-2">
+                            <div class="row">
+                              
+                              <div class="col-12 py-2 listcard">
+                                <p class=" text-black mb-0">
+                                  0 posts published
+                                </p>
+                              </div>
+                              <div class="col-12 py-2 listcard">
+                                <p class=" text-black mb-0">
+                                  3 tags followed
                                 </p>
                               </div>
                             </div>
@@ -218,27 +237,7 @@ import Postcard from "@/components/cards/Postcard.vue";
     color: #6c757d;
     cursor: pointer;
 }
-.proile-rating{
-    font-size: 12px;
-    color: #818182;
-    margin-top: 5%;
-}
-.proile-rating span{
-    color: #495057;
-    font-size: 15px;
-    font-weight: 600;
-}
-.profile-head .nav-tabs{
-    margin-bottom:5%;
-}
-.profile-head .nav-tabs .nav-link{
-    font-weight:600;
-    border: none;
-}
-.profile-head .nav-tabs .nav-link.active{
-    border: none;
-    border-bottom:2px solid #0062cc;
-}
+
 
 .profile-work p{
     font-size: 12px;

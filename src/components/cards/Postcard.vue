@@ -29,7 +29,7 @@
                     </div>
                   </div>
                 <div class="col-12 pt-2">
-                  <h5 class="h2 text-black fw-bold">
+                  <h5 class="h3 text-black fw-bold">
                     What tools/frameworks do you use for styling you web app?
                   </h5>
                 </div>

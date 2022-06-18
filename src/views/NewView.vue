@@ -1,12 +1,15 @@
 <script>
-data: () => ({
-  items: [
-    { label: 'Item 1', value: 1 },
-    { label: 'Item 2', value: 2 },
-    { label: 'Item 3', value: 3 }
-  ],
-  selection: [1, 3]
-})
+export default {
+    data(){
+        return {
+            tags: [
+                'javascript', 'css', 'html', 'python', 'reactjs', 'vuejs', 'nodejs', 'mongodb', 'firebase', 'github', 'git'
+            ]
+        }
+    }
+
+}
+
 
 
 </script>
@@ -27,13 +30,11 @@ data: () => ({
                     <input type="text" class="form-control" placeholder="New post title here">
                 </div>
                 <div class="tag-list">
-                    <!-- <w-select :items="items" v-model="selection" multiple>
-                        <template #selection="{ item }">
-                            <w-tag class="mr2" v-for="(item, i) in item" :key="i" bg-color="grey-light4">
-                            {{ item.label }}
-                            </w-tag>
-                        </template>
-                    </w-select> -->
+                    
+                    <div class="form-check form-check-inline" :key="tag" v-for="tag in tags">                                          
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                        <label class="form-check-label" for="inlineCheckbox1">#{{tag}}</label>
+                    </div>
                 </div>
             </w-card>
         </div>
@@ -65,7 +66,7 @@ data: () => ({
   background-color: none !important;
   outline: 0 !important;
 }
-::placeholder{
+.form-control::placeholder{
     font-size: 2.8rem;
     color: black !important;
 }

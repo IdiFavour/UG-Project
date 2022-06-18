@@ -8,6 +8,7 @@ import Signup from '../views/Signup.vue'
 import Profile from '../views/Profile.vue'
 import NewView from '../views/NewView.vue'
 import SearchView from '../views/SearchView.vue'
+import Settings from '../views/Settings.vue'
 
 const router = createRouter({
     history: createWebHistory(
@@ -52,6 +53,11 @@ const router = createRouter({
             path: '/search',
             name: 'search',
             component: SearchView
+        },
+        {
+            path: '/settings',
+            name: 'settings',
+            component: Settings
         }
 
 

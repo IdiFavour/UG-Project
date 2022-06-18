@@ -1,3 +1,60 @@
+<script>
+import axios from 'axios'
+axios.defaults.withCredentials = true
+export default {
+    data(){
+        return {
+            processing: true,
+            showDialog1: false,
+            showErrMsg: false,
+            errmsg: '',
+            loginDetails: {
+                email: '',
+                password: ''
+            }
+        }
+    },
+    computed:{
+        validateFields(){
+            if (this.loginDetails.email == '' || this.loginDetails.password == '') {
+                this.errmsg = 'All fields are required'
+                return false
+            }
+            return true
+        }
+    },
+    methods: {
+        loginUser(){
+            if (this.validateFields) {
+                this.showDialog1 = true
+                axios({
+                    method: 'post',
+                    url: 'http://localhost:5000/users/login',
+                    data: this.loginDetails,
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    }
+                })
+                .then(res => {
+                    this.processing = false
+                    console.log(res.data)
+                })
+                .catch(err => {
+                    if (err.response) {
+                        console.log(err.response.data.error)
+                        this.showDialog1 = false
+                        this.errmsg = err.response.data.error
+                        this.showErrMsg = true
+                    }
+                }) 
+            }
+            else{
+                this.showErrMsg = true
+            }
+        }
+    },
+}
+</script>
 <template>
 <body class="ps-0">
   <div class="auth_pages">
@@ -9,15 +66,36 @@
           /></a>
         </div>
         <div class="form_contain">
-          <form>
             <p class="page_info">Sign Into Account</p>
+            <!-- Status and error dialogs -->
+                <w-dialog persistent v-model="showDialog1" transition="bounce" :width="320">
+                    <div class="w-flex justify-center">
+                        <div v-if="processing">
+                            <p class="text-center"><w-spinner color="success" /></p>
+                            <p class="mt2 text-center text-bold">Processing please wait...</p>
+                        </div>
+                        <div v-else>
+                            <p class="text-center"><img src="../assets/images/check.png"/></p>
+                            <p class="text-center text-bold">Login successful!</p>
+                            <p class="text-center mt2"><w-button style="width: 100%;" class="btn" sm bg-color="success" route="/feed">Proceed</w-button></p>   
+                        </div>
+                    </div>
+                </w-dialog>
+
+                <w-alert v-if="showErrMsg" error icon-outside>
+                    <div class="w-flex justify-space-between align-center">
+                        <p>{{errmsg}}!</p>
+                        <div><ion-icon class="del-icon" @click="this.showErrMsg = false" name="close-outline"></ion-icon></div>
+                    </div>
+                </w-alert>
+                <!-- End of status and error dialogs -->
             <div class="input_contain">
               <div class="input_icon"><i class="fal fa-envelope"></i></div>
-              <input type="email" name="email" placeholder="Email address" />
+              <input type="email" name="email" v-model="loginDetails.email" placeholder="Email address" />
             </div>
             <div class="input_contain">
               <div class="input_icon"><i class="fal fa-lock"></i></div>
-              <input type="password" name="password" placeholder="Password" />
+              <input type="password" name="password" v-model="loginDetails.password" placeholder="Password" />
             </div>
             <div class="forget_password">
               <a href="/auth/forgot-password">Forget password</a>
@@ -34,9 +112,7 @@
                 >Privacy Statement</a
               >.
             </p>
-            <RouterLink to="/feed">
-            <button type="submit" class="submit_btn">Sign In</button>
-            </RouterLink>
+            <button type="submit" @click="loginUser" class="submit_btn">Sign In</button>
             <div class="extras">
               <p>Don't have an account?</p>
               &nbsp;
@@ -44,7 +120,6 @@
                 <a>Sign Up</a>
               </RouterLink>
             </div>
-          </form>
         </div>
       </div>
     </div>
@@ -63,7 +138,6 @@
 
 .auth_pages .auth_contain {
     align-items: center;
-    background: #f5f5f5;
     display: flex;
     justify-content: center;
     min-height: 70vh;

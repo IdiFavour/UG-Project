@@ -1,3 +1,74 @@
+<script>
+
+export default{
+    data(){
+      return{
+            processing: true,
+            showDialog1: false,
+            showErrMsg: false,
+            errmsg: '',
+            userDetails: {
+                userId: '',
+                firstname: '',
+                lastname: '',
+                email: '',
+                role: '',
+                password: '',
+                date_joined: '',
+                email_verified: false,
+                notifications: true
+            }
+        }
+
+    },
+    computed: {
+        validateFields(){
+            if (this.userDetails.firstname == "" || this.userDetails.lastname == "" || this.userDetails.email == "" || this.userDetails.role == "" || this.userDetails.password == "") {
+                this.errmsg = "All fields are required"
+                return false
+            }
+            return true
+        }
+    },
+    methods: {
+        register(){
+            if (this.validateFields) {
+                let date = new Date()
+                this.userDetails.date_joined = date
+                this.showDialog1 = true
+                fetch('http://localhost:5000/users/register', {
+                    method: 'POST',
+                    body: JSON.stringify(this.userDetails),
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    }
+                })
+                .then(response => response.json().then(res => ({
+                    status: response.status,
+                    data: res
+                })))
+                .then(res => {
+                    if (res.status == 200) {
+                        this.processing = false
+                        console.log(res.data)
+                    }
+                    else{
+                        this.showDialog1 = false
+                        this.errmsg = res.data.error
+                        this.showErrMsg = true
+                    }
+                })
+                .catch(err => console.log(err))   
+            }
+            else{
+                this.showErrMsg = true
+            }
+        },
+    }
+}
+
+</script>
+
 <template>
 <body class="ps-0">
   <div class="auth_pages">
@@ -9,29 +80,58 @@
           /></a>
         </div>
         <div class="form_contain">
-          <form>
+          <!-- Status and error dialogs -->
+                <w-dialog persistent v-model="showDialog1" transition="bounce" :width="320">
+                    <div class="w-flex justify-center">
+                        <div v-if="processing">
+                            <p class="text-center"><w-spinner color="success" /></p>
+                            <p class="mt2 text-center text-bold">Processing please wait...</p>
+                        </div>
+                        <div v-else>
+                            <p class="text-center"><img src="../assets/images/check.png"/></p>
+                            <p class="text-center text-bold">Registration successful!</p>
+                            <p class="text-center mt2"><w-button style="width: 100%;" route="/" class="btn" sm bg-color="success">Proceed to login</w-button></p>   
+                        </div>
+                    </div>
+                </w-dialog>
+                
+                <w-alert v-if="showErrMsg" error icon-outside>
+                    <div class="w-flex justify-space-between align-center">
+                        <p>{{errmsg}}!</p>
+                        <div><ion-icon class="del-icon" @click="this.showErrMsg = false" name="close-outline"></ion-icon></div>
+                    </div>
+                </w-alert>
+               
+                
+                <!-- End of status and error dialogs -->
             <p class="page_info">Create an Account</p>
             <div class="input_contain">
               <div class="input_icon"><i class="fal fa-envelope"></i></div>
-              <input type="email" name="text" placeholder="First name" />
+              <input type="text" v-model="userDetails.firstname" name="text" placeholder="First name" />
             </div>
             <div class="input_contain">
               <div class="input_icon"><i class="fal fa-envelope"></i></div>
-              <input type="email" name="text" placeholder="Last name" />
+              <input type="text" v-model="userDetails.lastname" name="text" placeholder="Last name" />
             </div>
             <div class="input_contain">
               <div class="input_icon"><i class="fal fa-envelope"></i></div>
-              <input type="email" name="email" placeholder="Email address" />
+              <select class="form-select border-0" v-model="userDetails.role">
+                <option value="" disabled selected>Select Role</option>
+                <option value="Frontend Developer">Frontend Developer</option>
+                <option value="Backend Developer">Backend Developer</option>
+                <option value="UI / UX Designer">UX / UI Designer</option>
+                <option value="Project Manager">Project manager</option>
+                <option value="">Not Listed</option>
+              </select>
+            </div>
+            <div class="input_contain">
+              <div class="input_icon"><i class="fal fa-envelope"></i></div>
+              <input type="email" v-model="userDetails.email" name="email" placeholder="Email address" />
             </div>
             <div class="input_contain">
               <div class="input_icon"><i class="fal fa-lock"></i></div>
-              <input type="password" name="password" placeholder="Password" />
+              <input type="password" v-model="userDetails.password" name="password" placeholder="Password" />
             </div>
-            <div class="input_contain">
-              <div class="input_icon"><i class="fal fa-lock"></i></div>
-              <input type="password" name="password" placeholder="Confirm Password" />
-            </div>
-           
             <p class="agreement">
               By signing in, I agree to the Pendev
               <a
@@ -44,7 +144,7 @@
                 >Privacy Statement</a
               >.
             </p>
-            <button type="submit" class="submit_btn">Sign Up</button>
+            <button type="submit" @click="register" class="submit_btn">Sign Up</button>
             <div class="extras">
               <p>Already have an account?</p>
               &nbsp;
@@ -52,11 +152,12 @@
                 <a>Sign In</a>
               </RouterLink>
             </div>
-          </form>
+          
         </div>
       </div>
     </div>
   </div>
+  
 </body>
   
 </template>
@@ -68,10 +169,8 @@
     margin: 0;
     padding: 0;
 }
-
 .auth_pages .auth_contain {
     align-items: center;
-    background: #f5f5f5;
     display: flex;
     justify-content: center;
     min-height: 70vh;
@@ -163,6 +262,43 @@
 .auth_pages .auth_contain .form_card .form_contain .extras a {
     color: #111;
     text-decoration: underline;
+}
+
+.modal {
+  /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 </style>

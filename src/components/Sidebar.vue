@@ -1,6 +1,37 @@
 <script>
 import { RouterLink, RouterView } from "vue-router";
 
+import axios from 'axios'
+axios.defaults.withCredentials = true
+export default {
+    data(){
+        return{
+            showUserToolbar: false
+        }
+    },
+    methods: {
+        IsloggedIn(){
+            axios.post('http://localhost:5000/users/isloggedin', {
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            })
+            .then(res => {
+                this.showUserToolbar = true
+                console.log(res.data.data.msg)
+            })
+            .catch(err => {
+                if (err.response){
+                    console.log(err.response.data.error)
+                }
+            }) 
+        }
+    },
+    mounted() {
+        this.IsloggedIn()
+    }
+}
+
 document.addEventListener("DOMContentLoaded", function (event) {
   const showNavbar = (toggleId, navId, bodyId, headerId) => {
     const toggle = document.getElementById(toggleId),
@@ -48,22 +79,33 @@ document.addEventListener("DOMContentLoaded", function (event) {
         <i class="bx bx-menu" id="header-toggle"></i>
       </div>
 
-      <div class="gap-2 d-md-flex justify-content-md-end">
-        <RouterLink to="/">
-          <button class="btn btn-login me-md-2 rounded-5" type="button">Log in</button>
+      <div class="gap-2 d-flex justify-content-md-end">
+        <RouterLink to="/search">
+          <button class="btn rounded-5" type="button"><i class='bx bx-search nav_icon d-flex justify-content-center' ></i></button>
 
         </RouterLink>
-        <RouterLink to="/signup">
-          <button type="button" class="btn btn-outline-primary btn-create rounded-5">Create account</button>
+        <div v-if="showUserToolbar">
+            <RouterLink to="/new">
+              <button class="btn btn-login me-md-2 rounded-5" type="button">Create Post</button>
 
-        </RouterLink>
-        <RouterLink to="/profile">
-          <div class="second d-flex flex-row d-none">
-            <div class="image mr-3">
-              <img src="https://i.imgur.com/0LKZQYM.jpg" class="rounded-circle" width="40" />
-            </div>
-          </div>
-        </RouterLink>
+            </RouterLink>
+        
+            <RouterLink to="/profile">
+              <img src="https://i.imgur.com/0LKZQYM.jpg" class="rounded-circle ms-2" width="40" />
+            </RouterLink>
+        </div>
+        <div v-else>
+            <RouterLink to="/">
+              <button class="btn btn-login me-md-2 rounded-5 d-none d-md-block " type="button">Log in</button>
+
+            </RouterLink>
+            <RouterLink to="/signup">
+              <button type="button" class="btn btn-outline-primary btn-create rounded-5 d-none d-md-block">Create account</button>
+
+            </RouterLink>
+        </div>
+        
+        
       </div>
     </header>
     <div class="l-navbar" id="nav-bar">
@@ -138,7 +180,7 @@ body {
   font-family: var(--body-font);
   font-size: var(--normal-font-size);
   transition: 0.5s;
-  background: rgb(245, 245, 245);
+  background: white;
 }
 
 a {

@@ -6,6 +6,8 @@ import ChatView from '../views/ChatView.vue'
 import Login from '../views/Login.vue'
 import Signup from '../views/Signup.vue'
 import Profile from '../views/Profile.vue'
+import NewView from '../views/NewView.vue'
+import SearchView from '../views/SearchView.vue'
 
 const router = createRouter({
     history: createWebHistory(
@@ -40,6 +42,16 @@ const router = createRouter({
             path: '/signup',
             name: 'signup',
             component: Signup
+        },
+        {
+            path: '/new',
+            name: 'newview',
+            component: NewView
+        },
+        {
+            path: '/search',
+            name: 'search',
+            component: SearchView
         }
 
 

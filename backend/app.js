@@ -6,6 +6,7 @@ const MongoStore = require('connect-mongo')
 const session = require('express-session')
 const app = express()
 const usersroute = require('./routes/users.js')
+const postroute = require('./routes/post.js')
 const url = "mongodb+srv://idifavour:Junebuzz123@cluster0.9zqd2.mongodb.net/?retryWrites=true&w=majority";
 
 app.use(express.json())
@@ -24,6 +25,22 @@ app.use(session({
 }))
 
 app.use("/users", usersroute)
+app.use("/post", postroute)
+
+app.use(function(req, res, next) {
+    var filePath = path.join(__dirname, req.path)
+    fs.stat(filePath, function(err, fileInfo) {
+        if (err) {
+            next()
+            return
+        }
+        if (fileInfo.isFile()) {
+            res.sendFile(filePath)
+        } else {
+            next()
+        }
+    })
+})
 
 app.get('/', (req, res) => {
     res.send("Welcome to my site")

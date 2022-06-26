@@ -1,9 +1,44 @@
+<script>
+export default {
+    props:{
+        postDetails: Object
+    },
+    computed: {
+        formatDate(){
+            const date = new Date(this.postDetails.date_added);
+            let year = date.getFullYear()
+            let month = date.getMonth()+1
+            let dt = date.getDate();
+            let hours = date.getHours()
+            let minutes = date.getMinutes()
+            if (dt < 10) {
+                dt = '0' + dt;
+            }
+            if (month < 10) {
+                month = '0' + month;
+            }
+            if (hours < 10){
+                hours = '0' + hours;
+            }
+            if (minutes < 10){
+                minutes = '0' + minutes;
+            }
+            return month + '-'+dt
+        },
+        linkToDetails(){
+            return "/post/"+this.postDetails.postId
+        }
+    }
+    
+};
+
+</script>
 <template>
-    <div class="card mb-2">
+    <div class="card mb-2" >
             <!-- Cover -->
             <div class="card__cover">
               <img
-                src="https://images.unsplash.com/photo-1502759683299-cdcd6974244f?auto=format&fit=crop&w=440&h=220&q=60"
+                :src="postDetails.images"
                 alt=""
               />
             </div>
@@ -24,36 +59,26 @@
                       <div class="py-1 ps-2">
                         <span>@hairtaje</span>
                         <br>
-                        <span>May 21</span>
+                        <small>{{formatDate}}</small>
                       </div>
                     </div>
                   </div>
                 <div class="col-12 pt-2">
                   <h5 class="h3 text-black fw-bold">
-                    What tools/frameworks do you use for styling you web app?
+                    {{postDetails.postTitle}}
                   </h5>
                 </div>
                 <div class="col-12">
-                  <!-- <div class="card-tag">
-                      <p class="btn btn-outline-secondary">Secondary</p>
-                      <p class="btn btn-outline-secondary">Secondary</p>
-                      <p class="btn btn-outline-secondary">Secondary</p>
-                      <p class="btn btn-outline-secondary">Secondary</p>
-                      <p class="btn btn-outline-secondary">Secondary</p>
-                      <p class="btn btn-outline-secondary">Secondary</p>
-                    </div> -->
-                  <div class="card-tag">
-                    <p class="btn">#Secondary</p>
-                    <p class="btn">#Secondary</p>
-                    <p class="btn">#Secondary</p>
-                    <p class="btn">#Secondary</p>
-                    <p class="btn">#Secondary</p>
-                    <p class="btn">#Secondary</p>
+                  <div class="card-tag mb-2" >
+                    <p class="btn" v-for="tag in postDetails.postTags" :key="tag">{{tag}}</p>
                   </div>
+                  <w-button style="width: 100%; padding: 13px;" class="btn" :route="linkToDetails" color="success" sm outline>More details</w-button>
                 </div>
               </div>
             </div>
-          </div>
+    </div>
+
+    
 </template>
 
 <style>
@@ -93,6 +118,10 @@
   /* Take available height */
   flex: 1;
   line-height: 1.2;
+}
+
+small{
+  color: black !important;
 }
 
 

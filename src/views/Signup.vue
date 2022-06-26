@@ -14,6 +14,7 @@ export default{
                 email: '',
                 role: '',
                 password: '',
+                friends: [],
                 date_joined: '',
                 email_verified: false,
                 notifications: true

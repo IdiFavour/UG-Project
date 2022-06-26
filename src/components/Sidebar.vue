@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
               <img src="https://i.imgur.com/0LKZQYM.jpg" class="rounded-circle ms-2" width="40" />
             </RouterLink>
         </div>
-        <div v-else>
+        <div v-else class="d-flex">
             <RouterLink to="/">
               <button class="btn btn-login me-md-2 rounded-5 d-none d-md-block " type="button">Log in</button>
 

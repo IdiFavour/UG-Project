@@ -7,9 +7,13 @@
     "preview": "vite preview --port 5050"
   },
   "dependencies": {
+    "@tinymce/tinymce-vue": "^4.0.7",
+    "@vue/cli": "^5.0.6",
+    "@vueup/vue-quill": "^1.0.0-beta.8",
     "axios": "^0.27.2",
     "vue": "^3.2.33",
     "vue-router": "^4.0.14",
+    "vue-tinymce-editor": "^1.6.2",
     "wave-ui": "^2.39.1"
   },
   "devDependencies": {

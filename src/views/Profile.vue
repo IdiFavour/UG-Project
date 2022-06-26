@@ -81,8 +81,7 @@ import Postcard from "@/components/cards/Postcard.vue";
                             <label for="tab2-1">Posts</label>
                             <input id="tab2-1" name="tabs-two" type="radio" checked="checked" />
                             <div>
-                              <Postcard />
-                              <Postcard />
+                              
                             </div>
                           </div>
                           <div class="tab-2">

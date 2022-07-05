@@ -26,7 +26,6 @@ export default {
             }
         })
         .then(res => {
-            console.log(res.data.data)
             this.items = res.data.data
 
         })
@@ -55,9 +54,13 @@ export default {
               </div>             
                  
         </div>
-        <div class="col-lg-5">
+        
+        <div class="col-lg-5 d-flex justify-content-center">
+          <div class="col-10">
           <Listcard/>
-          <Listcard/>
+
+          </div>
+          
         </div>
       </div>
     </div>

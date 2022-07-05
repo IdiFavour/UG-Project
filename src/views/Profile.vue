@@ -1,5 +1,84 @@
-<script setup>
+<script>
 import Postcard from "@/components/cards/Postcard.vue";
+import axios from 'axios'
+axios.defaults.withCredentials = true
+export default{
+    components: {
+       Postcard
+    },
+    data(){
+      return{
+          userDetails: [],
+          posts: [],
+          showDialog: false,
+          processing: true
+      }
+    },
+    methods: {
+      fetchDetails(){
+          axios({
+              method: 'get',
+              url: 'http://localhost:5000/users/getuserdetails?userId=${this.$route.params.id}',
+              headers: {
+                  "Content-type": "application/json; charset=UTF-8"
+              }
+          })
+          .then(res => {
+              console.log(res.data.data)
+              this.userDetails = res.data.data
+          })
+          .catch(err => {
+              if (err.response) {
+                  console.log(err.response.data.error)
+                  this.userDetails = []
+              }
+          })
+        },
+        logOut(){
+           this.showDialog = true
+            axios.post('http://localhost:5000/users/logout', {
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            })
+            .then(res => {
+                console.log(res.data.data.msg)
+                this.$router.push('/')
+            })
+            .catch(err => {
+                if (err.response){
+                    console.log(err.response.data.error)
+                }
+            })
+        }
+    },
+    mounted(){
+      this.fetchDetails()
+    },
+    computed: {
+      formatDate(){
+            const date = new Date(this.userDetails.date_joined);
+            let year = date.getFullYear()
+            let month = date.getMonth()+1
+            let dt = date.getDate();
+            let hours = date.getHours()
+            let minutes = date.getMinutes()
+            if (dt < 10) {
+                dt = '0' + dt;
+            }
+            if (month < 10) {
+                month = '0' + month;
+            }
+            if (hours < 10){
+                hours = '0' + hours;
+            }
+            if (minutes < 10){
+                minutes = '0' + minutes;
+            }
+            return dt + '-'+month+'-'+year
+        },
+    }
+}
 </script>
 <template>
   <div class="profile">
@@ -17,14 +96,15 @@ import Postcard from "@/components/cards/Postcard.vue";
                     </div>
                     <div class="col-md-6">
                         <div class="profile-head">
+                            <h3 class="uppercase fw-bold">
+                                {{userDetails.firstname}} {{userDetails.lastname}}
+                            </h3>
                             <h5>
-                                Kshiti Ghelani
+                                {{userDetails.role}}
                             </h5>
-                            <h6>
-                                Web Developer and Designer
-                            </h6>
                             
                         </div>
+                        
                     </div>
                     <div class="col-md-2">
                         
@@ -33,9 +113,10 @@ import Postcard from "@/components/cards/Postcard.vue";
                               Edit Profile
                             </button>
                           </RouterLink>
-                          <!-- <button class="btn btn-sm btn-primary btn-create w-50 ml-2">
-                                  Follow
-                          </button> -->
+                          
+                          <button @click="logOut" class="btn btn-sm btn-danger w-50 ml-2">
+                                  Logout
+                          </button>
                         
                     </div>
                 </div>
@@ -48,10 +129,13 @@ import Postcard from "@/components/cards/Postcard.vue";
                               <div class="col-12">
                                 <h4 class=" h5 fw-bold">Skills/Languages</h4>
                               </div>
-                              <div class="col-12 pt-2 listcard">
-                                <p class=" text-black ">
-                                  MEVN, MERN, Python
-                                </p>
+                              <div class="col-12 pt-2 ">
+                                <div class="card-tag">
+                                  <p class="btn" v-for="skills in userDetails.skills" :key="skills">
+                                      {{skills}}
+                                  </p>
+                                </div>
+                                
                               </div>
                             </div>
                           </div>
@@ -68,7 +152,12 @@ import Postcard from "@/components/cards/Postcard.vue";
                               </div>
                               <div class="col-12 py-2 listcard">
                                 <p class=" text-black mb-0">
-                                  3 tags followed
+                                  {{userDetails.tags_followed}} tags followed
+                                </p>
+                              </div>
+                              <div class="col-12 py-2 listcard">
+                                <p class=" text-black mb-0">
+                                  Joined: {{formatDate}}
                                 </p>
                               </div>
                             </div>

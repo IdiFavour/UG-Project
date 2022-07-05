@@ -17,7 +17,9 @@ export default{
                 friends: [],
                 date_joined: '',
                 email_verified: false,
-                notifications: true
+                notifications: true,
+                tags_followed: [],
+                skills: []
             }
         }
 

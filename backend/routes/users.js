@@ -80,7 +80,7 @@ router.get('/getuserdetails', utils.isLoggedIn, async(req, res) => {
     let userId = req.session.user
     let query = { userId: userId }
     let options = {
-        projection: { _id: 0, password: 0, userId: 0, date_joined: 0 }
+        projection: { _id: 0, password: 0, userId: 0 }
     }
     const itemsCount = await db.collection('users').countDocuments(query)
     if (itemsCount >= 1) {
@@ -89,6 +89,32 @@ router.get('/getuserdetails', utils.isLoggedIn, async(req, res) => {
             res.send({ status: 'ok', error: null, data: results })
         })
     }
+})
+
+// select post from db
+router.get('/getuserposts', async(req, res) => {
+        let userId = req.session.user
+        let query = { userId: userId }
+        let options = {
+            projection: { _id: 0 }
+        }
+        let results = await db.collection('items').find(query, options).toArray()
+        res.send({ status: 'ok', error: null, data: results })
+
+    })
+    // GET USER'S VIEW DETAILS FROM DB
+router.get('/userdetails', (req, res) => {
+    let userId = req.query.userId
+    let query = { userId: userId }
+    console.log(userId, query)
+    let options = {
+        projection: { _id: 0, password: 0 }
+    }
+    db.collection('users').findOne(query, options, (err, result) => {
+        if (err) return next(err)
+        res.send({ status: 'ok', error: null, data: result })
+        console.log(result)
+    })
 })
 
 //GET ALL USERS
@@ -101,6 +127,7 @@ router.get('/getusers', async(req, res) => {
     res.send({ status: 'ok', error: null, data: results })
 
 })
+
 
 // CHECK IF USER IS LOGGED IN
 router.post('/isloggedin', utils.isLoggedIn, (req, res) => {

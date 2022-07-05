@@ -1,3 +1,39 @@
+<script>
+import axios from 'axios'
+export default {
+  data(){
+    return{
+      newsData: []
+    }
+  },
+    methods: {
+    fetchNews(){
+            this.showDialog = true
+            axios({
+                method: 'get',
+                url: 'https://newsapi.org/v2/top-headlines?country=us&apiKey=31decb84732c44aea7be19decb79a85f&category=technology&pageSize=5',
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                },
+                withCredentials: false
+            })
+            .then(res => {
+                this.newsData = res.data.articles
+            })
+            .catch(err => {
+                if (err.response) {
+                    console.log(err.response.data.error)
+                    this.newsData = []
+                }
+            })
+        },
+  },
+  mounted(){
+    this.fetchNews()
+  }
+
+}
+</script>
 <template>
      <div class="card mb-2">
               <!-- Content -->
@@ -5,27 +41,18 @@
                 <div class="row">
                   <div class="col-12">
                     <div class="card-tag">
-                      <h4 class="btn fw-bold">#Secondary</h4>
+                      <h4 class="btn fw-bold">#TopTechNews</h4>
                     </div>
                   </div>
-                  <div class="col-12 pt-3 listcard">
-                    <p class=" text-black ">
-                      What tools/frameworks do you use for styling you web app?
-                    </p>
-                  </div>
-                  <div class="col-12 pt-3 listcard">
-                    <p class=" text-black">
-                      What tools/frameworks do you use for styling you web app?
-                    </p>
-                  </div>
-                  <div class="col-12 pt-3 listcard">
-                    <p class=" text-black">
-                      What tools/frameworks do you use for styling you web app?
-                    </p>
-                  </div>
+                  <a :href="item.url" target="_blank" class="text-decoration-none text-dark" v-for="item in newsData" :key="item">
+                    <div class="tab-item pb-3 pt-3 border-bottom">
+                      <p class="m-0">{{item.title}}</p>
+                      <p class="m-0 text-light"><small>{{item.author}} </small></p>
+                    </div>
+                  </a>
                 </div>
               </div>
-            </div>
+      </div>
 </template>
 
 <style>

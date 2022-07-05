@@ -56,6 +56,7 @@ export default{
             }
         })
       },
+      
   },
   mounted(){
       this.fetchItems(),
@@ -81,10 +82,10 @@ export default{
                     <div class="row">
                         <div class="col-lg-3">
                             <select class="form-select" v-model="sort" aria-label="Default select example">
-                                <option value="">Sort By</option>
-                                <option selected value="posts">Posts</option>
+                                <!-- <option value="">Sort By</option> -->
+                                <option value="posts" selected>Posts</option>
                                 <option value="people">People</option>
-                                <option value="2">Tag</option>
+                                <option value="tags">Tag</option>
                                 <option value="3">My Posts</option>
                             </select>
                         </div>
@@ -100,7 +101,79 @@ export default{
 
                                 </div>
                             </div>
-                            
+                            <div v-else-if="sort === 'tags'">
+                                <div class="card mb-2">
+                                        <!-- Content -->
+                                        <div class="card__content p-3 p-lg-4 py-lg-3">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="card-tag">
+                                                    <h4 class="btn fw-bold">#Html</h4>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <p class=" text-black mb-0">
+                                                        The HyperText Markup Language or HTML is the standard markup language for documents designed to be displayed in a web browser.
+                                                        It can be assisted by technologies such as Cascading Style Sheets and scripting languages such as JavaScript.
+                                                    </p>
+                                                </div>
+                                                <div class="col-12">
+                                                    <button class="btn btn-primary float-end ms-2">
+                                                        Follow
+                                                    </button>
+                                                
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="card mb-2">
+                                    <!-- Content -->
+                                    <div class="card__content p-2 p-lg-4 py-lg-3">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="card-tag">
+                                                <h4 class="btn fw-bold">#Javascript</h4>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 ">
+                                                <p class=" text-black ">
+                                                    JavaScript, often abbreviated JS, is a programming language that is one of the core technologies of the World Wide Web,
+                                                    alongside HTML and CSS. As of 2022, 98% of websites use JavaScript on the client side for web page behavior, often incorporating third-party libraries.
+                                                </p>
+                                            </div>
+                                            <div class="col-12">
+                                                    <button class="btn btn-primary float-end ms-2">
+                                                        Follow
+                                                    </button>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card mb-2">
+                                        <!-- Content -->
+                                        <div class="card__content p-3 p-lg-4 py-lg-3">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="card-tag">
+                                                    <h4 class="btn fw-bold">#Css</h4>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <p class=" text-black ">
+                                                        Cascading Style Sheets is a style sheet language used for describing the presentation of a document written in a markup language such as HTML or XML. CSS is a cornerstone technology of the World Wide Web, alongside HTML and JavaScript.
+                                                    </p>
+                                                </div>
+                                                <div class="col-12">
+                                                    <button class="btn btn-primary float-end ms-2">
+                                                        Follow
+                                                    </button>
+                                                
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
                             
                         </div>
                     </div>

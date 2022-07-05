@@ -10,6 +10,7 @@ import NewView from '../views/NewView.vue'
 import SearchView from '../views/SearchView.vue'
 import Settings from '../views/Settings.vue'
 import Post from '../views/Post.vue'
+import User from '../views/User.vue'
 
 const router = createRouter({
     history: createWebHistory(
@@ -64,6 +65,11 @@ const router = createRouter({
             path: '/post/:id',
             name: 'getpostdetails',
             component: Post
+        },
+        {
+            path: '/users/:id',
+            name: 'getdetails',
+            component: User
         }
 
 

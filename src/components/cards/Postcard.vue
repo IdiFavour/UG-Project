@@ -28,6 +28,7 @@ export default {
         linkToDetails(){
             return "/post/"+this.postDetails.postId
         }
+        
     }
     
 };
@@ -57,7 +58,7 @@ export default {
 
                     <div class="">
                       <div class="py-1 ps-2">
-                        <span>@hairtaje</span>
+                        <span>{{postDetails.userFullName}}</span>
                         <br>
                         <small>{{formatDate}}</small>
                       </div>

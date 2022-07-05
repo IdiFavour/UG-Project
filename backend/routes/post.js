@@ -83,31 +83,39 @@ router.get('/getposts', async(req, res) => {
         projection: { _id: 0 }
     }
     let results = await db.collection('items').find({}, options).toArray()
-        // results.forEach(element => {
-        //     let postObj = {}
-        //     let user = getUser(element.userId)
-        //     console.log(user)
-        //     postObj.title = element.title
-        //     finArr.push(postObj)
-        //     console.log(finArr)
-        // });
-    res.send({ status: 'ok', error: null, data: results })
+    for (let i = 0; i < results.length; i++) {
+        let userDetails = await db.collection('users').findOne({ userId: results[i].userId })
+        let resObj = {
+            date_added: results[i].date_added,
+            postId: results[i].postId,
+            images: results[i].images,
+            postTitle: results[i].postTitle,
+            postTags: results[i].postTags,
+            userFullName: userDetails.firstname + ' ' + userDetails.lastname,
+        }
+        finArr.push(resObj)
+    }
+    res.send({ status: 'ok', error: null, data: finArr })
 
 })
 
 // get item details from db
-router.get('/getpostdetails', (req, res, next) => {
+router.get('/getpostdetails', async(req, res, next) => {
     let postId = req.query.postId
     let query = { postId: postId }
-    console.log(postId, query)
     let options = {
         projection: { _id: 0 }
     }
-    db.collection('items').findOne(query, options, (err, result) => {
-        if (err) return next(err)
-        res.send({ status: 'ok', error: null, data: result })
-        console.log(result)
-    })
+    let optionsTwo = {
+        projection: { _id: 0, firstname: 1, lastname: 1 }
+    }
+    let postDetails = await db.collection('items').findOne(query, options)
+    let userDetails = await db.collection('users').findOne({ userId: postDetails.userId }, optionsTwo)
+    let result = {
+        userDetails: userDetails,
+        postDetails: postDetails
+    }
+    res.send({ status: 'ok', error: null, data: result })
 })
 
 router.use((err, req, res, next) => {

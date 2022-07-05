@@ -131,7 +131,7 @@
                   id="vac-icon-search"
                   d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"
                 ></path>
-                <!---->
+                
               </svg>
             </div>
             <input
@@ -153,11 +153,11 @@
                   id="vac-icon-add"
                   d="M17,13H13V17H11V13H7V11H11V7H13V11H17M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
                 ></path>
-                <!---->
+                
               </svg>
             </div>
           </div>
-          <!----><!---->
+        
           <div id="rooms-list" class="vac-room-list">
             <div
               id="qYbHWlNPiTrq0CMBgFAt"
@@ -172,7 +172,7 @@
                 ></div>
                 <div class="vac-name-container vac-text-ellipsis">
                   <div class="vac-title-container">
-                    <!---->
+                    
                     <div class="vac-room-name vac-text-ellipsis">test</div>
                     <div class="vac-text-date">Today, 23:03</div>
                   </div>
@@ -191,16 +191,16 @@
                           id="vac-icon-double-checkmark"
                           d="M18 7l-1.41-1.41-6.34 6.34 1.41 1.41L18 7zm4.24-1.41L11.66 16.17 7.48 12l-1.41 1.41L11.66 19l12-12-1.42-1.41zM.41 13.41L6 19l1.41-1.41L1.83 12 .41 13.41z"
                         ></path>
-                        <!---->
+                        
                       </svg></span
                     >
                     <div class="vac-text-ellipsis">
                       
                       hello
                     </div>
-                    <!---->
+                    
                     <div class="vac-room-options-container">
-                      <!---->
+                      
                       <div class="vac-svg-button vac-list-room-options">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -214,10 +214,10 @@
                             id="vac-icon-dropdown-room"
                             d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
                           ></path>
-                          <!---->
+                          
                         </svg>
                       </div>
-                      <!---->
+                      
                     </div>
                   </div>
                 </div>
@@ -229,7 +229,7 @@
         <div class="vac-col-messages">
           <div class="vac-room-header vac-app-border-b">
             <div class="vac-room-wrapper">
-              <!---->
+              
               <div
                 class="vac-svg-button vac-toggle-button vac-rotate-icon-init"
               >
@@ -245,7 +245,7 @@
                     id="vac-icon-toggle"
                     d="M5,13L9,17L7.6,18.42L1.18,12L7.6,5.58L9,7L5,11H21V13H5M21,6V8H11V6H21M21,16V18H11V16H21Z"
                   ></path>
-                  <!---->
+                  
                 </svg>
               </div>
               <div class="vac-info-wrapper">
@@ -273,10 +273,10 @@
                     id="vac-icon-menu"
                     d="M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z"
                   ></path>
-                  <!---->
+                  
                 </svg>
               </div>
-              <!---->
+              
             </div>
           </div>
           <div id="messages-list" class="vac-container-scroll">

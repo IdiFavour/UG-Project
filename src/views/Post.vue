@@ -1,10 +1,11 @@
 <script>
 import TopNav from "../components/TopNav.vue";
+import Listcard from "../components/cards/Listcard.vue";
 import axios from 'axios'
 axios.defaults.withCredentials = true
 export default {
     components: {
-        TopNav
+        TopNav, Listcard
     },
     data(){
         return{
@@ -17,6 +18,12 @@ export default {
                 images: '',
                 userId: ''
             },
+            userDetails: {
+                userId: '',
+                firstname: '',
+                lastname: '',
+            },
+            follow: 'Follow',
             showDialog: false,
             processing: true
         }
@@ -32,7 +39,8 @@ export default {
                     },
                 })
                 .then(res => {
-                    this.postDetails = res.data.data
+                    this.postDetails = res.data.data.postDetails
+                    this.userDetails = res.data.data.userDetails
                     this.showDialog1 = false
                 })
                 .catch(err => {
@@ -102,7 +110,7 @@ export default {
 
                                 <div class="">
                                 <div class="py-1 ps-2">
-                                    <span>@hairtaje</span>
+                                    <span>{{userDetails.firstname}} {{userDetails.lastname}}</span>
                                     <br>
                                     <small>{{formatDate}}</small>
                                 </div>
@@ -125,7 +133,7 @@ export default {
                         </div>
                     </div>
             </div>
-            <div class="col-lg-3 ">
+            <div class="col-lg-4 ">
                 <div class="card mt-3 still">
                     <div class="card__content p-3">
                         <div class="second d-flex flex-row mt-2">
@@ -139,16 +147,17 @@ export default {
 
                             <div class="">
                                 <div class="py-2 ps-2">
-                                    <span>@hairtaje</span>
+                                    <span>{{userDetails.firstname}} {{userDetails.lastname}}</span>
                                     
                                 </div>
                                 
                             </div>
                         </div>
-                        <button class="btn btn-primary w-100 mt-2">
-                              Follow
+                        <button class="btn btn-primary w-100 mt-2 {{bgchange}}" v-on:click="follow ='Following'">
+                              {{follow}}
                             </button>
                     </div>
+                    <Listcard/>
                     
                 </div>
             </div>

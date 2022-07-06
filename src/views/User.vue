@@ -17,6 +17,7 @@ export default {
                 date_joined: '',
                 tags_followed: []
             },
+            follow: 'Follow',
             showDialog: false,
             processing: true
         }
@@ -111,7 +112,9 @@ export default {
                           <button class="btn btn-sm btn-primary w-50 ml-2">
                                   Follow
                           </button>
-                        
+                          <button class="btn btn-sm btn-primary w-50 ml-2 {{bgchange}}" v-on:click="follow ='Following'">
+                              {{follow}}
+                            </button>
                     </div>
                 </div>
                 <div class="row">

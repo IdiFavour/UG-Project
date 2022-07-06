@@ -26,8 +26,6 @@ const emailExists = async(email) => {
     return true
 }
 
-
-
 const authenticateUser = async(email, password) => {
     let query = { email: email }
     const options = {

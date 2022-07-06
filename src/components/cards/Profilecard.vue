@@ -3,6 +3,11 @@ export default {
     props:{
         allUsers: Object
     },
+    data(){
+        return{
+            follow: 'Follow',
+        }
+    },
     computed: {
         linkToDetails(){
             return "/users/"+this.allUsers.userId
@@ -39,10 +44,10 @@ export default {
             </h5>
             </div>
             <div class="col-12">
-                <button class="btn btn-primary float-end ms-2">
-                    Follow
-                </button>
                 
+                <button class="btn btn-primary float-end ms-2" v-on:click="follow ='Following'">
+                              {{follow}}
+                            </button>
                 <w-button style=" padding: 15px;" class="btn" :route="linkToDetails" color="success btn-login float-end" sm outline>View Profile</w-button>
                 
             </div>

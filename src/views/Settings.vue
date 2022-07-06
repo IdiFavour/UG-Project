@@ -36,13 +36,10 @@ export default {
                         <label for="inputAddress" class="form-label">Role</label>
                         <input type="text" class="form-control" id="inputAddress" >
                     </div>
-                    <div class="col-md-6">
-                        <label for="inputAddress2" class="form-label">Address 2</label>
-                        <input type="text" class="form-control" id="inputAddress2" >
-                    </div>
+                   
                     
                     <div class="col-12">
-                        <button type="submit" class="btn btn-primary">Sign in</button>
+                        <button type="submit" class="btn btn-success">Save Changes</button>
                     </div>
    
             </div>

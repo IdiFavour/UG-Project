@@ -27,6 +27,7 @@ export default {
         })
         .then(res => {
             this.items = res.data.data
+            this.items.reverse()
 
         })
         .catch(err => {

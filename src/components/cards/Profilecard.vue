@@ -8,6 +8,17 @@ export default {
             follow: 'Follow',
         }
     },
+    methods: {
+        followChange(){
+            console.log(this.follow)
+            if (this.follow == 'Following'){
+                this.follow = 'Follow'
+            }
+            else{
+                this.follow = 'Following'
+            }
+        }
+    },
     computed: {
         linkToDetails(){
             return "/users/"+this.allUsers.userId
@@ -45,7 +56,7 @@ export default {
             </div>
             <div class="col-12">
                 
-                <button class="btn btn-primary float-end ms-2" v-on:click="follow ='Following'">
+                <button class="btn btn-primary float-end ms-2" v-on:click="followChange">
                               {{follow}}
                             </button>
                 <w-button style=" padding: 15px;" class="btn" :route="linkToDetails" color="success btn-login float-end" sm outline>View Profile</w-button>

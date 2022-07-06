@@ -29,6 +29,15 @@ export default {
         }
     },
     methods: {
+        followChange(){
+            console.log(this.follow)
+            if (this.follow == 'Following'){
+                this.follow = 'Follow'
+            }
+            else{
+                this.follow = 'Following'
+            }
+        },
         getItemDetails(){
             this.showDialog1 = true
             axios({
@@ -153,7 +162,7 @@ export default {
                                 
                             </div>
                         </div>
-                        <button class="btn btn-primary w-100 mt-2 {{bgchange}}" v-on:click="follow ='Following'">
+                        <button class="btn btn-primary w-100 mt-2" v-on:click="followChange">
                               {{follow}}
                             </button>
                     </div>

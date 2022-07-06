@@ -43,6 +43,15 @@ export default {
                         this.Details = {}
                     }
                 })
+        },
+        followChange(){
+            console.log(this.follow)
+            if (this.follow == 'Following'){
+                this.follow = 'Follow'
+            }
+            else{
+                this.follow = 'Following'
+            }
         }
     },
     mounted(){
@@ -109,10 +118,8 @@ export default {
                               Edit Profile
                             </button>
                           </RouterLink> -->
-                          <button class="btn btn-sm btn-primary w-50 ml-2">
-                                  Follow
-                          </button>
-                          <button class="btn btn-sm btn-primary w-50 ml-2 {{bgchange}}" v-on:click="follow ='Following'">
+                          
+                          <button class="btn btn-sm btn-primary w-50 ml-2" v-on:click="followChange">
                               {{follow}}
                             </button>
                     </div>

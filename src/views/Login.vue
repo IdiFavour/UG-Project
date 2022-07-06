@@ -64,9 +64,9 @@ export default {
                 </div>
                 <div class="form_card">
                     <div class="logo_contain">
-                    <a class="jet_logo" href="/"
-                        ><img src="/static/media/jets.8cb7f8c4658cb5b72382.png" alt=""
-                    /></a>
+                    
+                        <h3 class="page_info mt-2">Welcome to PENDEV</h3>
+                    
                     </div>
                     <div class="form_contain">
                         <p class="page_info">Sign Into Account</p>

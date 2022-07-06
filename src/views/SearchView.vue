@@ -90,12 +90,17 @@ export default{
                             </select>
                         </div>
                         <div class="col-lg-9">
+                            <div v-if="sort === ''">
+                                <div v-for="post in posts" :key="post">
+                                    <Searchcard :postDetails="post"></Searchcard>
+                                </div>
+                            </div>
                             <div v-if="sort === 'posts'">
                                 <div v-for="post in posts" :key="post">
                                     <Searchcard :postDetails="post"></Searchcard>
                                 </div>
                             </div>
-                            <div v-else-if="sort === 'people'">
+                            <div v-if="sort === 'people'">
                                 <div v-for="user in users" :key="user">
                                     <Profilecard :allUsers="user"/>
 
